@@ -45,8 +45,8 @@ app.get('/student',function(req,res){
     var data = '[';
     db.collection('student').get().then((snapshot)=>{
         snapshot.forEach(doc=>{
-            console.log(doc.data().name);
             data += '{'
+                data += '"id": "' + doc.id + '",';
                 data += '"imageURL": "' + doc.data().imageURL + '",';
                 data += '"name": "' + doc.data().name + '",';
                 data += '"stdId": "' + doc.data().stdId + '"';
