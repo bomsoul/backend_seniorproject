@@ -26,15 +26,19 @@ app.use(bodyParser.json());
 app.use(cors());
 
 
-app.get('/fetch', function (req, res) {
+app.get('/fetch/:id', function (req, res) {
+    const {params} = req;
+    console.log(params.id);
     var data = "{"
     db.collection('student').get().then((snapshot)=>{
         snapshot.forEach(doc => {
-            data += '"'+doc.id + '":{\n' +
+            if(doc.classid == params.id){
+                data += '"'+doc.id + '":{\n' +
             '"name" :"' + doc.data().name +'",\n'+
             '"descriptors" : [['+doc.data().descriptors+ ']],\n' + 
             '"classid" :"' + doc.data().classid +'",\n'+
             '"imageURL" :"' + doc.data().imageURL + '"\n},'
+            }
         });
         data = data.substring(0,data.length-1);
         data += "}";
