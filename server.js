@@ -33,6 +33,7 @@ app.get('/fetch', function (req, res) {
             data += '"'+doc.id + '":{\n' +
             '"name" :"' + doc.data().name +'",\n'+
             '"descriptors" : [['+doc.data().descriptors+ ']],\n' + 
+            '"name" :"' + doc.data().classid +'",\n'+
             '"imageURL" :"' + doc.data().imageURL + '"\n},'
         });
         data = data.substring(0,data.length-1);
@@ -50,6 +51,7 @@ app.get('/student',function(req,res){
                 data += '"imageURL": "' + doc.data().imageURL + '",';
                 data += '"name": "' + doc.data().name + '",';
                 data += '"stdId": "' + doc.data().stdId + '"';
+                data += '"classid": "' + doc.data().classid + '"';
             data += '},'
             })
         data = data.substring(0,data.length-1);
