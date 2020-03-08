@@ -32,7 +32,7 @@ app.get('/fetch/:id', function (req, res) {
     var data = "{"
     db.collection('student').get().then((snapshot)=>{
         snapshot.forEach(doc => {
-            if(doc.classid == params.id){
+            if(doc.data().classid == params.id){
                 data += '"'+doc.id + '":{\n' +
             '"name" :"' + doc.data().name +'",\n'+
             '"descriptors" : [['+doc.data().descriptors+ ']],\n' + 
